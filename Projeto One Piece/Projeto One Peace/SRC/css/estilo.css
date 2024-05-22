@@ -1,0 +1,214 @@
+/*  Estilo do corpo do HTML*/
+body {
+    background-color: #000000;
+    overflow: hidden; /*Tudo que estiver fora do body será escondido. Exemplo: consigo tirar a barra de rolagem com esse comando*/
+}
+
+/*main::after cria um estilo para um pseudo elemento
+  content: pode ser vazio ou conter um texto ou emojis (ponto mais tecla windows abre emojis)
+  Isso adiciona um conteúdo (CONTENT) para um elemento AFTER
+  after é depois então ele adiciona um pseudo elemento depois da tag MAIN
+  É como se tivesse colocado um elemento extra no HTML através do CSS
+  
+*/
+
+    /*CRIANDO O DEGRADE DO SITE*/
+    main::after {
+        /*Isso é feito para criar um evento extra por cima do site*/
+        content: "";
+        position: fixed; /*fica fixo no site*/
+        top: 0;
+        left: 0;
+        /*background-color: violet;*/
+        min-height: 100vh; /*altura minima do elemento*/
+        width: 80vw;/*view port width largura*/
+        
+        background: linear-gradient(-233deg, #000 40%, rgba(0, 0, 0, 0) 65%) no-repeat;
+        /*Site que gera degrade: CSSGRADIENTE.IO
+        RGBA é usado para fazer a opacidade da cor*/
+
+        /* OBS: FOI COLOCADO NA CLASE CONTEÚDO
+        z-index: 1; É o eixo Z que é eixo de profundidade 
+         - 1 deixa o elemento acima dos outros elementos 
+         - Que tem o Z-INDEX de valor menor */
+    }    
+
+
+/*
+    - Estilo para esconder todos os personagens criados no HTML
+    - Para isso eu preciso formatar a Classe onde estão os personagens
+    - Então formato a classe personagens
+    - Porque no projeto só tem uma imagem na tela principal
+    - Por isso se esconde as outras dos outros personagens
+    - Para mudar algo preciso ir na classe desse objeto
+    - Todas as classes estão dentro da classe main
+    - Então altero a classe main
+*/
+
+main .personagem {
+    /*main. personagem é a DIV onde esta todoas os personagens,  então todos os personagens terão esse mesmo estilo*/
+    display: none; /* esconde todos os elementos do main
+                      display é o tipo de apresentação, block mostra o elemento */
+    height: 100vh;/*VH é a largura do dispositivo que está sendo usado para ser esse site
+    quando uso o VH ele estica a imagem, para arrumar isso vou na classe imagem e uso OBJECT-FIT */
+}
+
+
+main .personagem.selecionado {
+   /*só aplica estilo no personagem que tem a classe personagem e selecionado juntas*/                         
+    display: block;
+                  /*display é o tipo de apresentação, block mostra o elemento*/
+}
+
+main .personagem .imagem {
+/*Esse estilo será aplicado só nas classes personagem e imagem, 
+só nas imagens dos personagens*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /*
+    object-fit: tira a distorção da imagem, tira o scroll horizontal
+    e mantem as dimensões de largura e altura da imagem
+    Cover: cobre o elemento que tem o object-fit, nesse caso é a imagem
+    */
+}
+
+.conteudo {
+    /*
+    Usando classes conseguimos formatar todos as tags/elementos que estão naquela classe,
+    Toda classe começa com um ponto mais seu nome: .nomedaclasse
+    o ID só formata uma TAG especifica
+    
+    
+    - Conteúdo ficara com a cor laranja
+    - Tiro a a cor do background para aparecer só o conteúdo sem a cor com fundo
+    
+    Todo conteudo da descrição do personagem está por cima da imagem do personagem
+    POSITION consigo colocar todo o conteúdo onde eu quiser no site
+    absolute: coloca o elemento por cima do conteúdo
+     */
+     position: absolute;
+     /*Uso as propriedades de top, middle, left, rightpara organizar o elemento position*/
+     top: 0;
+     left: 120px;
+     /*o conteúdo está posicionado a esquerda e agora é só centralizar*/
+     display: flex;
+     /* O display flex deixa as tags uma do lado da outra*/
+     flex-direction: column;
+     /*por padrão os elemento vem um do lado do outro
+     o atributo que vem por padrão e deixa todos os elementos um do lado do outro é o ROW QUE DEIXA TODOS ELEMENTOS EM LINHA, um do lado do outro
+     COLUMN: deixa todos tags/elementos em coluna, isso ajuda a usar outros elementos do flex como o JUSTIFY.
+     */
+     justify-content: center;
+     /*Alinha o conteúdo verticalmente
+      Porém para alinha um elemento é necessario que ele tenha um espaço dentro dele
+      Exemplo para colocar um sapato no meio de uma caixa, a caixa precisa ter o espaço maior uqe o sapato, para que ele fique no meio da caixa, se não tiver o sapato ocupará o tamanho da caixa.
+      Para o sapato caber na caixa ele precisa ser meno que a caixa.
+      Para alinhar um elemento é preciso ter espaço
+      Então posso criar esee espaço usando o MIN
+      */
+      min-height: 100vh;
+      /*
+      O elemento terá a altura de 100vh que é a tamamho total do elemento
+      E o justify-content que centralizou o texto
+      */
+      max-width: 380px;
+      /*Esse elemento terá uma largura maxima de 380px*/
+
+      z-index: 1; /*É o eixo Z que é eixo de profundidade 
+         - 1 deixa o elemento acima dos outros elementos 
+         - Que tem o Z-INDEX de valor menor */
+}
+
+/*
+ - Para estilizar a classe do nome do personagem:
+   1º coloco o nome da classe principal onde ela está
+   2º Após coloco o nome da classe que quero estilizar
+   Exemplo:  
+            .conteudo .nome-personagem
+ */
+.conteudo .nome-personagem {
+ 
+    color: #ffffff;
+    font-size: 48px;
+    font-family: "Secular One";
+    font-weight: 400; /*É o peso da fonte*/
+    margin-bottom: 20px; /*adiciona uma margem/espaço entre o nome e o texto
+    BOTTOM: adiciona essa margem embaixo*/
+}
+.conteudo .descricao {
+
+    color: #ffffff;
+    font-family: "Rubik";
+    line-height: 24px;/*É a altura entre as linhas*/
+}
+
+.conteudo .logo {
+    /*
+    background-color: aquamarine;
+    
+    O logo é uma imagem, então não preciso colocar a propriedade background
+    só preciso carregar essa imagem
+    */
+     background-image: url("../imagens/one-piece-logo.png");
+    /*
+    /: entro dentro da pasta do projeto e vejo as pasta e arquivos que tem nela
+    ./: Entro dentro da primeira pasta dentro da primeira do pasta projeto
+    ../: entro dentro da pasta SRC.
+    */    
+    background-size: cover;
+    /*
+    - E sempre deve ser usado o background-size quando uso IMG
+    - COVER: esse valor diz que a imagem cobrirá todo o espaço que foi definido na altura e largura.
+    */
+    height: 100px;
+    width: 230px;
+    /*
+    sempre que eu for usar uma propriedade de IMG, essa imagem deve ter uma largura e altura.
+    */
+    margin-bottom: 20px;
+    /*Coloca uma espaço entre a imagem do logo e o titulo do nome do personagem*/
+}
+
+/*SOI CRIADO NA LINHA 14
+Adicionando um degrade na imagem de fundo
+Será inserido depois do estilo do body esse estilo*/
+
+/*FORMATANDO OS BOTÔES*/
+.botoes {
+    position: fixed;
+    top: 0; /*Deixa o elemento no topo*/
+    right: 0;/*O elemento é posicionado na direita*/
+    
+
+    /* Centralizando os elementos do botão verticalmante*/
+    display: flex;/*display fles centraliza em linha*/
+    flex-direction: column; /*Tira os elementos da horizontal e alinha na vertical*/
+    min-height: 100vh;/*É a altura minima*/
+    width: 180px;/*Os botoes ficarão colados nas esquerda uso align- itens para alinhas no centro*/
+    justify-content: center; /*Alinha no cebtro verticalmente*/
+    align-items: center; /*Para centralizar verticalmente*/
+
+    gap: 10px; /*da um espaçamento em todos os elementos*/
+    background-color: rgba(0, 0, 0, 0.3);/*da uma opacidade. O a do RGBA é o Alpha e é nele que se mexe para colocae a opacidade*/
+}
+
+.botoes .botao {
+    border: none; /*tira as bordas laterais*/
+    background: #000000;/*tira a cor de fundo e aparece de baixo do botão*/
+    cursor: pointer;/*Coloca o icone de mão no link do botão*/
+    border-radius: 50px; /*Como os botões estão dentro de uma DIV e elas são quadradas, esse estilo deixa a imagem dos botões redondas */
+}
+
+/*Estilo diferente quando o botaõ for selecionado*/
+
+.botoes .botao img {
+    border-radius: 50px; /*Como os botões estão dentro de uma DIV e elas são quadradas, esse estilo deixa a imagem dos botões redondas */
+}
+
+/*Quando um botão for selecionado ele ficara diferente*/
+.botoes .botao.selecionado{
+    transform: scale(1.2);/*almenta o tamnaho do botão selecionado*/
+    box-shadow: 0 0 10px #d9d9d9 ;/*coloca uma sombra*/
+
+}
